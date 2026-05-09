@@ -1,0 +1,6 @@
+{
+  "name": "Dismel B2B Suite",
+  "description": "Sistema integral de gestión de ventas con Copiloto IA, integración de WhatsApp y Odoo.",
+  "requestFramePermissions": ["camera", "microphone", "geolocation"],
+  "majorCapabilities": []
+}
