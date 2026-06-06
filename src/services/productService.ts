@@ -1,5 +1,6 @@
 import apiClient from './apiClient';
 import { Product } from '../types';
+import { responseNormalizer } from './responseNormalizer';
 
 export const productService = {
   /**
@@ -8,7 +9,7 @@ export const productService = {
   async getProducts(search?: string): Promise<Product[]> {
     const params = search ? { search } : {};
     const response = await apiClient.get('/advisor/products', { params });
-    return response.data;
+    return responseNormalizer.normalizeArrayResponse<Product>(response.data, ["products", "data", "items"]);
   },
 
   /**
@@ -16,6 +17,6 @@ export const productService = {
    */
   async getProductPreview(productId: string): Promise<Product> {
     const response = await apiClient.get(`/advisor/product-preview/${productId}`);
-    return response.data;
+    return responseNormalizer.normalizeObjectResponse<Product>(response.data, ["product", "data"])!;
   }
 };

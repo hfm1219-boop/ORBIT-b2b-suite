@@ -1,0 +1,109 @@
+<svg width="680" height="876" viewBox="0 0 680 876" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Hoja de ruta de ORBIT</title>
+<desc>Hoja de ruta del agente IA ORBIT de Dismel en cinco fases sobre doce sprints, con dos puntos de control.</desc>
+<style>
+  text{font-family:'Helvetica Neue',Arial,sans-serif}
+  .th{font-size:14px;font-weight:500}
+  .ts{font-size:12px;font-weight:400}
+  .cap{font-size:13px;font-weight:500;fill:#2C2C2A}
+  .badge{font-size:14px;font-weight:500;fill:#FFFFFF}
+</style>
+<rect width="680" height="876" fill="#FFFFFF"/>
+
+<text class="th" x="38" y="29" fill="#2C2C2A">ORBIT · Hoja de ruta del agente IA — Dismel B2B Suite</text>
+
+<rect x="70" y="40" width="13" height="13" rx="3" fill="#0F6E56"/>
+<text class="ts" x="90" y="50" fill="#5F5E5A">v1 · agente operativo</text>
+<rect x="250" y="40" width="13" height="13" rx="3" fill="#854F0B"/>
+<text class="ts" x="270" y="50" fill="#5F5E5A">v2 · modular y proactivo</text>
+<rect x="448" y="40" width="13" height="13" rx="3" fill="#534AB7"/>
+<text class="ts" x="468" y="50" fill="#5F5E5A">v3 · predictivo (ML)</text>
+
+<line x1="56" y1="102" x2="56" y2="766" stroke="#B4B2A9" stroke-width="2"/>
+
+<rect x="80" y="74" width="560" height="108" rx="12" fill="#F1EFE8" stroke="#5F5E5A" stroke-width="0.6"/>
+<text class="th" x="100" y="105" fill="#2C2C2A">Fase 0 · Base estable</text>
+<text class="ts" x="620" y="105" text-anchor="end" fill="#5F5E5A">Sprint 1–2</text>
+<text class="ts" x="100" y="129" fill="#5F5E5A">Corrige estructura y conecta feedback automatico. Aun sin agente.</text>
+<rect x="100" y="144" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="136" y="161" text-anchor="middle">SEG</text>
+<rect x="188" y="144" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="224" y="161" text-anchor="middle">FDB</text>
+
+<rect x="80" y="202" width="560" height="142" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.6"/>
+<text class="th" x="100" y="233" fill="#04342C">Fase 1 · Agente operativo v1</text>
+<text class="ts" x="620" y="233" text-anchor="end" fill="#0F6E56">Sprint 3–6</text>
+<text class="ts" x="100" y="257" fill="#0F6E56">Captura feedback, aprende por cliente y prioriza con scoring explicable.</text>
+<rect x="100" y="272" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="136" y="289" text-anchor="middle">INT</text>
+<rect x="188" y="272" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="224" y="289" text-anchor="middle">CLI</text>
+<rect x="276" y="272" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="312" y="289" text-anchor="middle">C360</text>
+<rect x="364" y="272" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="400" y="289" text-anchor="middle">PROD</text>
+<rect x="452" y="272" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="488" y="289" text-anchor="middle">PED</text>
+<rect x="100" y="306" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="136" y="323" text-anchor="middle">CAR</text>
+<rect x="188" y="306" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="224" y="323" text-anchor="middle">FDB</text>
+<rect x="276" y="306" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="312" y="323" text-anchor="middle">NBA</text>
+<rect x="364" y="306" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="400" y="323" text-anchor="middle">SCO</text>
+<rect x="452" y="306" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="488" y="323" text-anchor="middle">KPI</text>
+
+<rect x="80" y="364" width="560" height="110" rx="12" fill="#E1F5EE" stroke="#0F6E56" stroke-width="0.6"/>
+<text class="th" x="100" y="395" fill="#04342C">Fase 2 · Endurecimiento y piloto</text>
+<text class="ts" x="620" y="395" text-anchor="end" fill="#0F6E56">Sprint 7–8</text>
+<text class="ts" x="100" y="419" fill="#0F6E56">Persistencia real de feedback, scoring y aprendizaje. Jobs de recalculo.</text>
+<rect x="100" y="426" width="520" height="30" rx="6" fill="#FAECE7" stroke="#993C1D" stroke-width="0.6"/>
+<text class="ts" x="360" y="445" text-anchor="middle" fill="#4A1B0C">Hito — piloto controlado: mide adopcion real y calidad de datos</text>
+
+<rect x="80" y="490" width="560" height="46" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="6 4"/>
+<text class="th" x="110" y="513" fill="#501313">Punto de control</text>
+<text class="ts" x="110" y="529" fill="#A32D2D">El piloto debe validar adopcion y datos confiables antes de la red modular.</text>
+<circle cx="56" cy="513" r="10" fill="#A32D2D"/>
+
+<rect x="80" y="552" width="560" height="108" rx="12" fill="#FAEEDA" stroke="#854F0B" stroke-width="0.6"/>
+<text class="th" x="100" y="583" fill="#412402">Fase 3 · Red modular y observabilidad</text>
+<text class="ts" x="620" y="583" text-anchor="end" fill="#854F0B">Sprint 9–11</text>
+<text class="ts" x="100" y="607" fill="#854F0B">Separa la red de capacidades, activa Google Chat y mensajes proactivos.</text>
+<rect x="100" y="622" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="136" y="639" text-anchor="middle">OBS</text>
+<rect x="188" y="622" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="224" y="639" text-anchor="middle">RUT</text>
+<rect x="276" y="622" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="312" y="639" text-anchor="middle">MSG</text>
+<rect x="364" y="622" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="400" y="639" text-anchor="middle">NOV</text>
+<rect x="452" y="622" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="488" y="639" text-anchor="middle">LRN</text>
+
+<rect x="80" y="676" width="560" height="46" rx="8" fill="#FCEBEB" stroke="#A32D2D" stroke-width="0.8" stroke-dasharray="6 4"/>
+<text class="th" x="110" y="699" fill="#501313">Punto de control</text>
+<text class="ts" x="110" y="715" fill="#A32D2D">ML solo con 3–6 meses de eventos limpios y una metrica objetivo definida.</text>
+<circle cx="56" cy="699" r="10" fill="#A32D2D"/>
+
+<rect x="80" y="738" width="560" height="108" rx="12" fill="#EEEDFE" stroke="#534AB7" stroke-width="0.6"/>
+<text class="th" x="100" y="769" fill="#26215C">Fase 4 · Machine learning</text>
+<text class="ts" x="620" y="769" text-anchor="end" fill="#534AB7">Sprint 12+</text>
+<text class="ts" x="100" y="793" fill="#534AB7">Modelos predictivos de recompra, pago, fuga y next best action.</text>
+<rect x="100" y="808" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="136" y="825" text-anchor="middle">SCO+</text>
+<rect x="188" y="808" width="72" height="26" rx="6" fill="#FFFFFF" stroke="#D3D1C7" stroke-width="0.6"/>
+<text class="cap" x="224" y="825" text-anchor="middle">NBA+</text>
+
+<circle cx="56" cy="102" r="15" fill="#5F5E5A"/>
+<text class="badge" x="56" y="107" text-anchor="middle">0</text>
+<circle cx="56" cy="230" r="15" fill="#0F6E56"/>
+<text class="badge" x="56" y="235" text-anchor="middle">1</text>
+<circle cx="56" cy="392" r="15" fill="#0F6E56"/>
+<text class="badge" x="56" y="397" text-anchor="middle">2</text>
+<circle cx="56" cy="580" r="15" fill="#854F0B"/>
+<text class="badge" x="56" y="585" text-anchor="middle">3</text>
+<circle cx="56" cy="766" r="15" fill="#534AB7"/>
+<text class="badge" x="56" y="771" text-anchor="middle">4</text>
+</svg>

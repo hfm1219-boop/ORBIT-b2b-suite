@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { useNavigate } from "react-router-dom";
 import { Package, Truck, CheckCircle2, ChevronRight, Filter, Search, Users, X, MapPin, Trash2, Calendar } from "lucide-react";
 import NewOrder from "./NewOrder";
 
@@ -39,6 +40,7 @@ const MOCK_ORDERS = [
 ];
 
 export default function Pedidos() {
+  const navigate = useNavigate();
   const [showNewOrder, setShowNewOrder] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState<any>(null);
 
@@ -143,22 +145,53 @@ export default function Pedidos() {
       </AnimatePresence>
 
       {/* Header Buttons */}
-      <div className="bg-dismel-red p-4 pt-12 flex gap-3 flex-shrink-0">
+      <div className="bg-dismel-red px-5 h-[82px] flex items-center gap-3 flex-shrink-0">
         <button 
           onClick={() => setShowNewOrder(true)}
-          className="flex-1 h-12 bg-dismel-red-dark text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-black/10 active:scale-95 transition-transform flex items-center justify-center gap-2"
+          className="flex-1 h-10 bg-dismel-red-dark text-white rounded-xl font-black text-[9px] uppercase tracking-widest shadow-lg shadow-black/10 active:scale-95 transition-transform flex items-center justify-center gap-2"
         >
-          <Package size={16} />
-          Nuevo pedido
+          <Package size={14} />
+          <span>Nuevo pedido</span>
         </button>
-        <button className="flex-1 h-12 bg-black text-white rounded-2xl font-black text-xs uppercase tracking-widest shadow-lg shadow-black/10 active:scale-95 transition-transform flex items-center justify-center gap-2">
-          <Trash2 size={16} />
+        <button className="flex-1 h-10 bg-black text-white rounded-xl font-black text-[9px] uppercase tracking-widest shadow-lg shadow-black/10 active:scale-95 transition-transform flex items-center justify-center gap-2">
+          <Trash2 size={14} />
           Devoluciones
         </button>
       </div>
 
       {/* Filters Area */}
       <div className="p-5 bg-white space-y-4 border-b border-border-soft flex-shrink-0">
+        {/* Suggested Orders / IA Drafts Section */}
+        <div className="mb-2">
+          <div className="flex items-center gap-2 mb-3">
+             <div className="w-6 h-6 bg-dismel-red/10 rounded-lg flex items-center justify-center text-dismel-red">
+                <CheckCircle2 size={12} />
+             </div>
+             <h4 className="text-[10px] font-black text-text-main uppercase tracking-widest">Borradores Inteligentes</h4>
+             <span className="ml-auto bg-dismel-red text-white text-[8px] font-black px-1.5 py-0.5 rounded-full animate-pulse">NUEVO</span>
+          </div>
+          
+          <div className="flex gap-3 overflow-x-auto no-scrollbar -mx-1 px-1">
+             {[
+               { id: '1', customer: 'LICORERA DON PEPE', reason: 'Recompra Sugerida', items: 3 },
+               { id: '2', customer: 'HOTEL CARIBE', reason: 'Acción Preventiva', items: 5 }
+             ].map((draft, i) => (
+               <motion.div 
+                 key={i}
+                 whileTap={{ scale: 0.98 }}
+                 onClick={() => navigate(`/dashboard/suggested-order?customer_id=${draft.id}&source=draft`)}
+                 className="flex-shrink-0 w-44 p-3 bg-dismel-gray/40 border border-border-soft rounded-2xl cursor-pointer hover:border-dismel-red/30 transition-all border-dashed"
+               >
+                  <p className="text-[10px] font-black text-text-main uppercase truncate mb-1">{draft.customer}</p>
+                  <div className="flex justify-between items-center">
+                    <span className="text-[8px] font-bold text-text-muted uppercase tracking-tight">{draft.reason}</span>
+                    <span className="text-[9px] font-black text-dismel-red">{draft.items} SKUs</span>
+                  </div>
+               </motion.div>
+             ))}
+          </div>
+        </div>
+
         <div className="relative">
           <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-text-muted/40" />
           <input
@@ -220,7 +253,7 @@ export default function Pedidos() {
                  </div>
                  <div className="flex flex-col items-end">
                    <span className="text-[8px] font-black text-text-muted uppercase tracking-widest leading-none mb-1">Fecha</span>
-                   <span className="text-[10px] font-black text-text-main leading-none">{order.date.split(' ')[0]}</span>
+                   <span className="text-[10px] font-black text-text-main leading-none">{order.date ? order.date.split(' ')[0] : 'N/A'}</span>
                  </div>
                </div>
 

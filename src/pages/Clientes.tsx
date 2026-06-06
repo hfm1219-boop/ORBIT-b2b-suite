@@ -3,10 +3,12 @@ import { motion, AnimatePresence } from "motion/react";
 import { Search, ChevronRight, Users, AlertCircle, RefreshCw } from "lucide-react";
 import { customerService } from "../services/customerService";
 import { Customer } from "../types";
-import CustomerDashboardModal from "../components/customers/CustomerDashboardModal";
+import Customer360Modal from "../components/customers/Customer360Modal";
 import NewOrder from "./NewOrder";
+import { useNavigate } from "react-router-dom";
 
 export default function Clientes() {
+  const navigate = useNavigate();
   const [customers, setCustomers] = useState<Customer[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -19,18 +21,28 @@ export default function Clientes() {
 
     // Check for pending order or customer view from other pages (Repurchase logic)
     const checkPendingActions = () => {
-      const pendingCustomer = localStorage.getItem('pendingOrderCustomer');
-      const pendingProduct = localStorage.getItem('pendingOrderProduct');
-      const openCustomerId = localStorage.getItem('openCustomerId');
+      try {
+        const pendingCustomer = localStorage.getItem('pendingOrderCustomer');
+        const pendingProduct = localStorage.getItem('pendingOrderProduct');
+        const openCustomerId = localStorage.getItem('openCustomerId');
 
-      if (pendingCustomer) {
-        const customer = JSON.parse(pendingCustomer);
-        const product = pendingProduct ? JSON.parse(pendingProduct) : undefined;
+        if (pendingCustomer) {
+          const customer = JSON.parse(pendingCustomer);
+          const product = pendingProduct ? JSON.parse(pendingProduct) : undefined;
+          localStorage.removeItem('pendingOrderCustomer');
+          localStorage.removeItem('pendingOrderProduct');
+          
+          // If it's a single product object, wrap it in an array for handleStartOrder
+          const items = product ? [product] : undefined;
+          handleStartOrder(customer.id, customer.name, items);
+        } else if (openCustomerId) {
+          setSelectedCustomerId(openCustomerId);
+          localStorage.removeItem('openCustomerId');
+        }
+      } catch (e) {
+        console.error("Error parsing pending actions", e);
         localStorage.removeItem('pendingOrderCustomer');
         localStorage.removeItem('pendingOrderProduct');
-        handleStartOrder(customer.id, customer.name, product);
-      } else if (openCustomerId) {
-        setSelectedCustomerId(openCustomerId);
         localStorage.removeItem('openCustomerId');
       }
     };
@@ -57,17 +69,27 @@ export default function Clientes() {
     (c.commercial_name && c.commercial_name.toLowerCase().includes(searchTerm.toLowerCase()))
   );
 
-  const handleStartOrder = (id: string, name: string, product?: any) => {
+  const handleStartOrder = (id: string, name: string, items?: any[]) => {
     setSelectedCustomerId(null);
-    setShowOrderForCustomer({ id, name, product });
+    if (items) {
+      localStorage.setItem('pendingOrderCustomer', JSON.stringify({ id, name }));
+      
+      // Ensure items is an array before stringifying
+      const itemsArray = Array.isArray(items) ? items : [items];
+      localStorage.setItem('pending_order_items', JSON.stringify(itemsArray));
+      
+      navigate('/dashboard/pedidos');
+    } else {
+      setShowOrderForCustomer({ id, name });
+    }
   };
 
   return (
     <div className="flex flex-col h-full bg-app-bg font-sans relative overflow-hidden">
       {/* Search Header */}
-      <div className="bg-dismel-red p-6 pt-12 pb-10 flex-shrink-0">
-        <h1 className="text-xl font-black text-white uppercase tracking-tight">Mis Clientes</h1>
-        <p className="text-[10px] font-black text-white/70 uppercase tracking-[0.2em] mt-1">{customers.length} Cartera Asignada</p>
+      <div className="bg-dismel-red px-6 h-[82px] flex flex-col justify-center flex-shrink-0">
+        <h1 className="text-base font-black text-white uppercase tracking-tight leading-none">Mis Clientes</h1>
+        <p className="text-[8px] font-black text-white/70 uppercase tracking-[0.2em] mt-1.5">{customers.length} Cartera Asignada</p>
       </div>
 
       <div className="px-6 -mt-6 mb-4">
@@ -112,7 +134,7 @@ export default function Clientes() {
               key={customer.id}
               whileTap={{ scale: 0.98 }}
               onClick={() => setSelectedCustomerId(customer.id)}
-              className="p-4 bg-white border border-border-soft rounded-[28px] flex items-center justify-between shadow-sm active:bg-dismel-gray transition-colors border-l-4 border-l-white hover:border-l-dismel-red"
+              className="p-4 bg-white border border-border-soft rounded-[28px] flex items-center justify-between shadow-sm active:bg-gray-100 transition-colors border-l-4 border-l-white hover:border-l-dismel-red"
             >
               <div className="flex items-center gap-4 min-w-0">
                 <div className="w-12 h-12 rounded-2xl bg-dismel-red-soft flex items-center justify-center flex-shrink-0 text-dismel-red">
@@ -142,10 +164,9 @@ export default function Clientes() {
       {/* Customer 360 Modal */}
       <AnimatePresence>
         {selectedCustomerId && (
-          <CustomerDashboardModal 
+          <Customer360Modal 
             customerId={selectedCustomerId}
             onClose={() => setSelectedCustomerId(null)}
-            onStartOrder={handleStartOrder}
           />
         )}
       </AnimatePresence>

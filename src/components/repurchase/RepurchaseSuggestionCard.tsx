@@ -135,7 +135,7 @@ export default function RepurchaseSuggestionCard({
            <div className="flex justify-between items-center bg-dismel-gray p-2.5 rounded-2xl border border-border-soft">
               <div className="text-center grow border-r border-border-soft">
                  <p className="text-[7px] font-black text-text-muted uppercase leading-none mb-1.5 opacity-60">Última</p>
-                 <p className="text-[10px] font-black text-text-main leading-none uppercase">{suggestion.last_purchase_date.split(' ')[0]}</p>
+                 <p className="text-[10px] font-black text-text-main leading-none uppercase">{suggestion.last_purchase_date ? suggestion.last_purchase_date.split(' ')[0] : 'N/A'}</p>
               </div>
               <div className="text-center grow border-r border-border-soft">
                  <p className="text-[7px] font-black text-text-muted uppercase leading-none mb-1.5 opacity-60">Frecu.</p>

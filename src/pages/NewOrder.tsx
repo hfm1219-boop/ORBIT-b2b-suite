@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { ChevronDown, X, Trash2, Plus, Search, User, MapPin, Check } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { feedbackLogger } from "../utils/feedbackLogger";
 
 interface NewOrderProps {
   onBack: () => void;
@@ -49,16 +50,23 @@ export default function NewOrder({ onBack, initialCustomerId, initialCustomerNam
     }
 
     if (pendingItems) {
-      const parsedItems = JSON.parse(pendingItems);
-      setItems(prev => [...prev, ...parsedItems.map((item: any) => ({
-        id: item.id,
-        sku: item.sku,
-        name: item.name,
-        qty: item.qty,
-        price: item.price,
-        discount: 0
-      }))]);
-      localStorage.removeItem('pending_order_items');
+      try {
+        const parsedItems = JSON.parse(pendingItems);
+        const itemsArray = Array.isArray(parsedItems) ? parsedItems : [parsedItems];
+        
+        setItems(prev => [...prev, ...itemsArray.map((item: any) => ({
+          id: item.id || item.product_id,
+          sku: item.sku,
+          name: item.name || item.product_name,
+          qty: item.qty || item.suggested_qty || 1,
+          price: item.price || item.current_price || 0,
+          discount: 0
+        }))]);
+      } catch (e) {
+        console.error("Error parsing pending items", e);
+      } finally {
+        localStorage.removeItem('pending_order_items');
+      }
     }
   }, [initialCustomerId]);
 
@@ -395,10 +403,28 @@ export default function NewOrder({ onBack, initialCustomerId, initialCustomerNam
                     </div>
 
                     <div className="flex gap-4 pt-6">
-                      <button className="flex-1 bg-gray-100 text-gray-800 py-4 rounded-2xl font-black text-sm active:scale-95 transition-transform" onClick={onBack}>
+                      <button 
+                        type="button"
+                        className="flex-1 bg-gray-100 text-gray-800 py-4 rounded-2xl font-black text-sm active:scale-95 transition-transform" 
+                        onClick={onBack}
+                      >
                         Cancelar
                       </button>
                       <button 
+                        type="button"
+                        onClick={() => {
+                          // Log Order Confirmed
+                          feedbackLogger.logOrderConfirmed(
+                            selectedClient.id, 
+                            selectedClient.name, 
+                            "S" + Math.floor(Math.random() * 100000), 
+                            Number(totalPedido)
+                          );
+                          
+                          // For now, show a success alert and go back
+                          alert(`¡Pedido para ${selectedClient.name} enviado con éxito!`);
+                          onBack();
+                        }}
                         className="flex-1 bg-dismel-red shadow-lg shadow-dismel-red/30 text-white py-4 rounded-2xl font-black text-sm active:scale-95 transition-transform"
                       >
                         Enviar

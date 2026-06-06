@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Clock, AlertCircle, RefreshCw, ChevronRight } from "lucide-react";
+import { Clock, AlertCircle, RefreshCw, ChevronRight, TrendingUp } from "lucide-react";
 import { repurchaseService } from "../../services/repurchaseService";
 import { RepurchaseSuggestion } from "../../types";
 import RepurchaseSuggestionCard from "./RepurchaseSuggestionCard";
@@ -102,7 +102,7 @@ export default function RepurchaseSuggestionsSection({
               suggestion={suggestion} 
               onAddToOrder={onAddToOrder}
               onOpenCustomer={onOpenCustomer}
-              showCustomer={false}
+              showCustomer={showCustomer}
               isCompact={true}
               isSelected={!!selectedItems[suggestion.product_id]}
               quantity={selectedItems[suggestion.product_id] || suggestion.suggested_qty || 1}
@@ -131,7 +131,7 @@ export default function RepurchaseSuggestionsSection({
                 suggestion={suggestion} 
                 onAddToOrder={onAddToOrder}
                 onOpenCustomer={onOpenCustomer}
-                showCustomer={false}
+                showCustomer={showCustomer}
                 isCompact={true}
                 isSelected={!!selectedItems[suggestion.product_id]}
                 quantity={selectedItems[suggestion.product_id] || suggestion.suggested_qty || 1}
